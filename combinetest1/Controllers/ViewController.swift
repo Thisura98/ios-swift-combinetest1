@@ -8,13 +8,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    @IBOutlet private weak var testLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        testLabel.text = "Hello, World!"
     }
-
+    
 }
 
