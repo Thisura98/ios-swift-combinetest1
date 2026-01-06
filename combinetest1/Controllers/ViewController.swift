@@ -5,6 +5,9 @@
 //  Created by Thisura Dodangoda on 2026-01-06.
 //
 
+// Random Wisdom
+// 1. The Memory Graph doesn't show UIKit objects unless they have a custom class.
+
 import UIKit
 
 class ViewController: UIViewController {
