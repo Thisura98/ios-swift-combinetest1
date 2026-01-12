@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24128" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="dark"/>
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginField" customModule="combinetest1" customModuleProvider="target">
             <connections>
                 <outlet property="imageView" destination="0Qc-Qe-TZg" id="auA-uY-vs3"/>
+                <outlet property="spinner" destination="ZO4-WT-5qw" id="Rif-R9-bdF"/>
                 <outlet property="textField" destination="rTB-9T-f5b" id="4Lq-57-Twi"/>
             </connections>
         </placeholder>
@@ -31,13 +32,18 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ZO4-WT-5qw">
+                    <rect key="frame" x="365" y="52.666666666666664" width="20" height="19.999999999999993"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="rTB-9T-f5b" firstAttribute="leading" secondItem="0Qc-Qe-TZg" secondAttribute="trailing" constant="5" id="Cea-gm-MbD"/>
                 <constraint firstItem="0Qc-Qe-TZg" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="LPE-NE-eWA"/>
+                <constraint firstItem="ZO4-WT-5qw" firstAttribute="centerY" secondItem="rTB-9T-f5b" secondAttribute="centerY" id="Snd-TC-svq"/>
                 <constraint firstItem="0Qc-Qe-TZg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="keT-49-DIX"/>
+                <constraint firstItem="rTB-9T-f5b" firstAttribute="trailing" secondItem="ZO4-WT-5qw" secondAttribute="trailing" constant="8" id="oag-kQ-9ue"/>
                 <constraint firstItem="0Qc-Qe-TZg" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" id="sKT-Ba-R9l"/>
                 <constraint firstItem="rTB-9T-f5b" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="wUz-Ur-CcH"/>
                 <constraint firstItem="rTB-9T-f5b" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="yjU-uP-wnI"/>

@@ -16,8 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Feo-06-1JT">
-                                <rect key="frame" x="20" y="172" width="353" height="150"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Feo-06-1JT">
+                                <rect key="frame" x="20" y="172" width="353" height="170"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rue-Bi-XCr" customClass="LoginField" customModule="combinetest1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
@@ -27,14 +27,14 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="20l-BZ-vwH" customClass="LoginField" customModule="combinetest1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="353" height="50"/>
+                                        <rect key="frame" x="0.0" y="60" width="353" height="50"/>
                                         <color key="backgroundColor" systemColor="systemPinkColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="l5W-LE-qa4"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9d-EY-53R" customClass="LoginField" customModule="combinetest1" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="100" width="353" height="50"/>
+                                        <rect key="frame" x="0.0" y="120" width="353" height="50"/>
                                         <color key="backgroundColor" systemColor="systemPinkColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="dXS-gz-B8S"/>
@@ -55,6 +55,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Wizarding School Signup" id="EcV-9u-uRh"/>
+                    <connections>
+                        <outlet property="confirmPWField" destination="M9d-EY-53R" id="tiG-te-fiy"/>
+                        <outlet property="nameField" destination="Rue-Bi-XCr" id="nHG-I5-49u"/>
+                        <outlet property="pwField" destination="20l-BZ-vwH" id="URZ-yJ-PIY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -84,7 +89,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

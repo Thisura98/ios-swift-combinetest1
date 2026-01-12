@@ -8,9 +8,8 @@ import UIKit
 
 public class LoginField: NibLoadableView{
     
-    @IBOutlet private weak var imageView: UIImageView!
-    @IBOutlet private weak var textField: UITextField!
-    
-    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
 }
