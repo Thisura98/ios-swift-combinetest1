@@ -18,6 +18,13 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+    
+    private func setup(){
+        nameField.setup(.name, "Enter your name", nil)
+        pwField.setup(.password, "Enter a password", nil)
+        confirmPWField.setup(.password, "Retype your password", nil)
     }
     
 }
