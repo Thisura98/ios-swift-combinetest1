@@ -45,13 +45,30 @@
                                     <constraint firstAttribute="height" priority="100" constant="100" id="JJ8-fM-6Mb"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0wt-NZ-ah1">
+                                <rect key="frame" x="20" y="367" width="353" height="55"/>
+                                <color key="backgroundColor" red="0.90261718749999997" green="0.90261718749999997" blue="0.90261718749999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="8Rd-Kq-txp"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Sign Up">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b6W-Fo-hKs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Feo-06-1JT" secondAttribute="trailing" constant="20" id="E8t-0R-gfw"/>
+                            <constraint firstItem="0wt-NZ-ah1" firstAttribute="trailing" secondItem="Feo-06-1JT" secondAttribute="trailing" id="QQP-xT-og9"/>
+                            <constraint firstItem="0wt-NZ-ah1" firstAttribute="top" secondItem="Feo-06-1JT" secondAttribute="bottom" constant="25" id="U7q-45-jhK"/>
                             <constraint firstItem="Feo-06-1JT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="WI4-cr-SYu"/>
                             <constraint firstItem="Feo-06-1JT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ocg-80-m3k"/>
+                            <constraint firstItem="0wt-NZ-ah1" firstAttribute="leading" secondItem="Feo-06-1JT" secondAttribute="leading" id="uK9-53-ny3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Wizarding School Signup" id="EcV-9u-uRh"/>
@@ -59,6 +76,7 @@
                         <outlet property="confirmPWField" destination="M9d-EY-53R" id="tiG-te-fiy"/>
                         <outlet property="nameField" destination="Rue-Bi-XCr" id="nHG-I5-49u"/>
                         <outlet property="pwField" destination="20l-BZ-vwH" id="URZ-yJ-PIY"/>
+                        <outlet property="signUpButton" destination="0wt-NZ-ah1" id="av1-Tm-M7w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
