@@ -63,6 +63,7 @@ class ViewModel {
     
     private func validatePW(_ first: String?, _ confirm: String?) -> Bool{
         guard let pw = first, let confirm = confirm else { return false }
+        guard pw.count > 3 else { return false }
         return pw == confirm
     }
     
