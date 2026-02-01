@@ -17,13 +17,13 @@ class NameValidatorService {
         }
         let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        // Fake suppressor
-        try await Task.sleep(for: .seconds(3))
-        
         guard trimmed.count > 3 else {
             print("Name '\(name)' is NOT valid!")
             return false
         }
+        
+        // Fake suppressor
+        try await Task.sleep(for: .seconds(3))
         
         print("Name '\(name)' is valid!")
         return true

@@ -48,7 +48,7 @@ class ViewController: UIViewController {
             .receive(on: RunLoop.main)
             .assign(to: \.isEnabled, on: signUpButton)
         
-        subscriber2 = viewModel.$nameIsLoading
+        subscriber2 = viewModel.nameIsLoading?
             .sink { [weak self] showLoadingProgressBar in
                 self?.nameField?.showSpinner(showLoadingProgressBar)
             }

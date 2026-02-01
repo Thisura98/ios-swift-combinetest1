@@ -13,15 +13,14 @@ class ViewModel {
     @Published var name: String? = ""
     @Published var pw: String? = ""
     @Published var pwConfirm: String? = ""
-    @Published var nameIsLoading: Bool = false
 
     private let nameValidatorService = NameValidatorService()
 
-    // Expose a validation state for the name: (isValid, isLoading)
     private var nameValidationState: AnyPublisher<(Bool, Bool), Never>?
 
-    // Public publisher indicating whether the form is valid to submit
     var validToSubmit: AnyPublisher<Bool, Never>? = Just(false).eraseToAnyPublisher()
+    
+    var nameIsLoading: AnyPublisher<Bool, Never>? = Just(false).eraseToAnyPublisher()
 
     public init(){
         // Build name validation state: emit (false, true) immediately when a new name arrives,
@@ -50,6 +49,12 @@ class ViewModel {
                     .prepend((false, true))
                     .eraseToAnyPublisher()
             }
+            .share() // We have two subscribers. If this wasn't there, the service is called twice.
+            .eraseToAnyPublisher()
+        
+        nameIsLoading = nameValidationState?
+            .map{ (_, isLoading) in isLoading }
+            .removeDuplicates()
             .eraseToAnyPublisher()
 
         // Combine name validity and password confirmation. While name is loading, force false.
@@ -57,7 +62,6 @@ class ViewModel {
             .map { [weak self] nameState, pw, confirm in
                 guard let self = self else { return false }
                 let (isValidName, isLoadingName) = nameState
-                self.nameIsLoading = isLoadingName
                 return !isLoadingName && isValidName && self.validatePW(pw, confirm)
             }
             .removeDuplicates()
