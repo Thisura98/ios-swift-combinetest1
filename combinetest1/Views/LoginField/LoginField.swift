@@ -12,6 +12,8 @@ public class LoginField: NibLoadableView{
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
+    var onChange: ((_ text: String?) -> ())? = nil
+    
     public enum IconName{
         case name
         case password
@@ -31,6 +33,10 @@ public class LoginField: NibLoadableView{
         textField.placeholder = placeholder
         textField.text = text
         spinner.stopAnimating()
+    }
+    
+    @IBAction private func textFieldChanged(_ sender: UITextField){
+        onChange?(textField.text)
     }
     
 }

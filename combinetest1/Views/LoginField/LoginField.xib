@@ -31,6 +31,9 @@
                     <rect key="frame" x="45" y="45.666666666666664" width="348" height="33.999999999999993"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="textFieldChanged:" destination="-1" eventType="valueChanged" id="lJG-FF-yWa"/>
+                    </connections>
                 </textField>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ZO4-WT-5qw">
                     <rect key="frame" x="365" y="52.666666666666664" width="20" height="19.999999999999993"/>
