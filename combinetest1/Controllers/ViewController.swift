@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     
     private var viewModel = ViewModel()
     private var subscriber: AnyCancellable?
+    private var subscriber2: AnyCancellable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,11 @@ class ViewController: UIViewController {
         subscriber = viewModel.validToSubmit?
             .receive(on: RunLoop.main)
             .assign(to: \.isEnabled, on: signUpButton)
+        
+        subscriber2 = viewModel.$nameIsLoading
+            .sink { [weak self] showLoadingProgressBar in
+                self?.nameField?.showSpinner(showLoadingProgressBar)
+            }
     }
     
     private func justAcknowledge(){

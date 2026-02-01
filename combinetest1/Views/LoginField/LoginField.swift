@@ -26,6 +26,15 @@ public class LoginField: NibLoadableView{
         }
     }
     
+    public func showSpinner(_ state: Bool){
+        if (state){
+            spinner.startAnimating()
+        }
+        else{
+            spinner.stopAnimating()
+        }
+    }
+    
     public func setup(_ iconName: IconName? = nil, _ placeholder: String? = nil, _ text: String? = nil){
         if let iconName = iconName{
             imageView.image = iconName.image()
