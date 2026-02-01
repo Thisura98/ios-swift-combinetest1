@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class NameValidatorService {
     func validateName(_ name: String?) async throws -> Bool{
@@ -27,5 +28,19 @@ class NameValidatorService {
         
         print("Name '\(name)' is valid!")
         return true
+    }
+    
+    func validateNameV2(_ name: String?) -> Future<Bool, Never> {
+        return Future { promise in
+            Task{
+                do{
+                    promise(.success(try await self.validateName(name)))
+                }
+                catch(let error){
+                    print("NameValidationService Error:", error)
+                    promise(.success(false))
+                }
+            }
+        }
     }
 }

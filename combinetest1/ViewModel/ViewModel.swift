@@ -24,30 +24,25 @@ class ViewModel {
     var nameIsLoading: AnyPublisher<Bool, Never>? = Just(false).eraseToAnyPublisher()
 
     public init(){
+        // Concept:
         // Build name validation state: emit (false, true) immediately when a new name arrives,
         // then emit (result, false) when the async validation completes
+        //
+        // share():
+        // We have two subscribers. If this wasn't there, the service is called twice.
+        // Adding share creates a 'common event stream' for all downstream publishers.
         nameValidationState = $name
             .debounce(for: .milliseconds(100), scheduler: RunLoop.main)
             .removeDuplicates { $0 == $1 }
             .flatMap { [weak self] name -> AnyPublisher<(Bool, Bool), Never> in
                 guard let self = self else { return Just((false, false)).eraseToAnyPublisher() }
 
-                return Future<Bool, Never> { promise in
-                    Task {
-                        do {
-                            let result = try await self.nameValidatorService.validateName(name)
-                            promise(.success(result))
-                        } catch {
-                            print(error)
-                            promise(.success(false))
-                        }
-                    }
-                }
+                return self.nameValidatorService.validateNameV2(name)
                 .map { ($0, false) }
                 .prepend((false, true))
                 .eraseToAnyPublisher()
             }
-            .share() // We have two subscribers. If this wasn't there, the service is called twice.
+            .share()
             .eraseToAnyPublisher()
         
         nameIsLoading = nameValidationState?
