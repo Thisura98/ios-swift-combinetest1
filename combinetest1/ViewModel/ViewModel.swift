@@ -13,7 +13,7 @@ class ViewModel{
     @Published var pw: String? = nil
     @Published var pwConfirm: String? = nil
     
-    private var validToSubmit: AnyPublisher<Bool, Never>? = nil
+    var validToSubmit: AnyPublisher<Bool, Never>? = nil
     
     public init(){
         validToSubmit = Publishers.CombineLatest3($name, $pw, $pwConfirm)

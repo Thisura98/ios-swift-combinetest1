@@ -32,7 +32,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
-                        <action selector="textFieldChanged:" destination="-1" eventType="valueChanged" id="lJG-FF-yWa"/>
+                        <action selector="editingChanged:" destination="-1" eventType="editingChanged" id="O5m-Kg-TKe"/>
                     </connections>
                 </textField>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ZO4-WT-5qw">

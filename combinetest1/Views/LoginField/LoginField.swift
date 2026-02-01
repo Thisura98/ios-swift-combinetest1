@@ -35,7 +35,7 @@ public class LoginField: NibLoadableView{
         spinner.stopAnimating()
     }
     
-    @IBAction private func textFieldChanged(_ sender: UITextField){
+    @IBAction func editingChanged(_ sender: Any) {
         onChange?(textField.text)
     }
     

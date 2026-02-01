@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet private weak var signUpButton: UIButton!
     
     private var viewModel = ViewModel()
+    private var subscriber: AnyCancellable?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,10 @@ class ViewController: UIViewController {
         confirmPWField?.onChange = { [weak self] (value) in
             self?.viewModel.pwConfirm = value
         }
+        
+        subscriber = viewModel.validToSubmit?
+            .receive(on: RunLoop.main)
+            .assign(to: \.isEnabled, on: signUpButton)
     }
     
     private func justAcknowledge(){
