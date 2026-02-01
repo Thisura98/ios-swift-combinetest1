@@ -1,0 +1,70 @@
+//
+//  MainViewModel.swift
+//  combinetest1
+//
+//  Created by Thisura Dodangoda on 2026-02-01.
+//
+
+import UIKit
+import Combine
+
+class ViewModel {
+    
+    @Published var name: String? = ""
+    @Published var pw: String? = ""
+    @Published var pwConfirm: String? = ""
+
+    private let nameValidatorService = NameValidatorService()
+
+    // (isValid, isLoading)
+    private var nameValidationState: AnyPublisher<(Bool, Bool), Never>?
+
+    var validToSubmit: AnyPublisher<Bool, Never>? = Just(false).eraseToAnyPublisher()
+    
+    var nameIsLoading: AnyPublisher<Bool, Never>? = Just(false).eraseToAnyPublisher()
+
+    public init(){
+        // Concept:
+        // Build name validation state: emit (false, true) immediately when a new name arrives,
+        // then emit (result, false) when the async validation completes
+        //
+        // share():
+        // We have two subscribers. If this wasn't there, the service is called twice.
+        // Adding share creates a 'common event stream' for all downstream publishers.
+        nameValidationState = $name
+            .debounce(for: .milliseconds(100), scheduler: RunLoop.main)
+            .removeDuplicates { $0 == $1 }
+            .flatMap { [weak self] name -> AnyPublisher<(Bool, Bool), Never> in
+                guard let self = self else { return Just((false, false)).eraseToAnyPublisher() }
+
+                return self.nameValidatorService.validateNameCombine(name)
+                .map { ($0, false) }
+                .prepend((false, true))
+                .eraseToAnyPublisher()
+            }
+            .share()
+            .eraseToAnyPublisher()
+        
+        nameIsLoading = nameValidationState?
+            .map{ (_, isLoading) in isLoading }
+            .removeDuplicates()
+            .eraseToAnyPublisher()
+
+        // Combine name validity and password confirmation. While name is loading, force false.
+        validToSubmit = Publishers.CombineLatest3(nameValidationState!, $pw, $pwConfirm)
+            .map { [weak self] nameState, pw, confirm in
+                guard let self = self else { return false }
+                let (isValidName, isLoadingName) = nameState
+                return !isLoadingName && isValidName && self.validatePW(pw, confirm)
+            }
+            .removeDuplicates()
+            .eraseToAnyPublisher()
+    }
+    
+    private func validatePW(_ first: String?, _ confirm: String?) -> Bool{
+        guard let pw = first, let confirm = confirm else { return false }
+        guard pw.count > 3 else { return false }
+        return pw == confirm
+    }
+    
+}
