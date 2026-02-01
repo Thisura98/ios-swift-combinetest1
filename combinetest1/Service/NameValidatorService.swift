@@ -30,7 +30,10 @@ class NameValidatorService {
         return true
     }
     
-    func validateNameV2(_ name: String?) -> Future<Bool, Never> {
+    /**
+     Same implementation as validateName but wrapped in a Future for using with Combine
+     */
+    func validateNameCombine(_ name: String?) -> Future<Bool, Never> {
         return Future { promise in
             Task{
                 do{

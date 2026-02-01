@@ -37,7 +37,7 @@ class ViewModel {
             .flatMap { [weak self] name -> AnyPublisher<(Bool, Bool), Never> in
                 guard let self = self else { return Just((false, false)).eraseToAnyPublisher() }
 
-                return self.nameValidatorService.validateNameV2(name)
+                return self.nameValidatorService.validateNameCombine(name)
                 .map { ($0, false) }
                 .prepend((false, true))
                 .eraseToAnyPublisher()
