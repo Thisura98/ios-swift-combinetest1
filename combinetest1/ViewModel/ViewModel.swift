@@ -34,8 +34,8 @@ class ViewModel {
                 let result = Future<Bool, Never> { promise in
                     Task {
                         do {
-                            let ok = try await self.nameValidatorService.validateName(name)
-                            promise(.success(ok))
+                            let result = try await self.nameValidatorService.validateName(name)
+                            promise(.success(result))
                         } catch {
                             print(error)
                             promise(.success(false))
