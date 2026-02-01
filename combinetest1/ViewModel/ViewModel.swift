@@ -16,6 +16,7 @@ class ViewModel {
 
     private let nameValidatorService = NameValidatorService()
 
+    // (isValid, isLoading)
     private var nameValidationState: AnyPublisher<(Bool, Bool), Never>?
 
     var validToSubmit: AnyPublisher<Bool, Never>? = Just(false).eraseToAnyPublisher()
@@ -31,7 +32,7 @@ class ViewModel {
             .flatMap { [weak self] name -> AnyPublisher<(Bool, Bool), Never> in
                 guard let self = self else { return Just((false, false)).eraseToAnyPublisher() }
 
-                let result = Future<Bool, Never> { promise in
+                return Future<Bool, Never> { promise in
                     Task {
                         do {
                             let result = try await self.nameValidatorService.validateName(name)
@@ -42,12 +43,9 @@ class ViewModel {
                         }
                     }
                 }
-
-                // Start with loading state, then the final result
-                return result
-                    .map { ($0, false) }
-                    .prepend((false, true))
-                    .eraseToAnyPublisher()
+                .map { ($0, false) }
+                .prepend((false, true))
+                .eraseToAnyPublisher()
             }
             .share() // We have two subscribers. If this wasn't there, the service is called twice.
             .eraseToAnyPublisher()
